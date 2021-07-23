@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://_proj/_CGameSystem/font/cost_arial.tres" type="DynamicFont" id=1]
+[ext_resource path="res://_proj/_CGameSystem/Sprites/_placeholders/gray.png" type="Texture" id=2]
+[ext_resource path="res://_proj/_CGameSystem/Sprites/_placeholders/offwhite.png" type="Texture" id=3]
+[ext_resource path="res://_proj/_CGameSystem/font/type_arial.tres" type="DynamicFont" id=4]
+[ext_resource path="res://_proj/_CGameSystem/font/descr_arial.tres" type="DynamicFont" id=5]
+[ext_resource path="res://_proj/_CGameSystem/Scripts/Card.gd" type="Script" id=6]
+
+[node name="Card" type="Node2D" groups=[
+"Cards",
+]]
+script = ExtResource( 6 )
+
+[node name="bg" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 90, 120 )
+
+[node name="_m_mouse_catcher" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -45.0
+margin_top = -60.0
+margin_right = 45.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 90, 120 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="_v_" type="VBoxContainer" parent="_m_mouse_catcher"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 115.0
+rect_min_size = Vector2( 80, 110 )
+mouse_filter = 2
+custom_constants/separation = 2
+
+[node name="TR" type="Label" parent="_m_mouse_catcher/_v_"]
+margin_right = 80.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 80, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.0352941, 0.294118, 0.623529, 1 )
+text = "cost"
+align = 2
+
+[node name="description" type="Label" parent="_m_mouse_catcher/_v_"]
+margin_top = 21.0
+margin_right = 80.0
+margin_bottom = 95.0
+rect_min_size = Vector2( 80, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "descr"
+align = 1
+valign = 1
+
+[node name="BR" type="Label" parent="_m_mouse_catcher/_v_"]
+margin_top = 97.0
+margin_right = 80.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 80, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.172549, 0.694118, 0.113725, 1 )
+text = "type"
+align = 2
+valign = 2
+
+[node name="Cover" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 90, 120 )
+
+[connection signal="gui_input" from="_m_mouse_catcher" to="." method="_on_mouse_catcher_gui_input"]
