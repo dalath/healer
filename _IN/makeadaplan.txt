@@ -1,0 +1,65 @@
+
+TITTA HÄR FÖRST: Du har precis "fixat till" _CGameSystem och skapat om Healer på nytt
+
+1) gör ett Creature card och Heal card
+2) Se till att Draw funkar, så att Heal cards går till Hand och Creature går till Track
+
+
+
+
+
+HELAH is da game
+------------------------
+
+
+Area "TRACK"
+	- :clicks:
+		- CardTable -> nothing selected -> block
+		- CardTable -> hand card selected -> run cached on this card
+
+
+Area "HAND"
+	- max 5 kort
+	- dra två kort start av runda
+	- spela 1
+	- discard 1
+	- PASS
+	- :clicks:
+		- CardTable -> toggle as cached card & block func
+
+DRAW
+	- behöver :pass: knapp
+	- kort
+		- Heal 1
+			- CardFunc: select Heal, vänta på target select
+		- Creature (health/maxhealth)
+
+
+DISCARD
+
+
+TABLE -> kontrollerar rundor, flyttar fram på track
+	- bara ett kort / runda
+	- kan välja ett discard slutet av runda
+	- om Creature lämnar brädet utan full hälsa -> Defeat-GO
+	- sista Creature lämnar brädet, allt ok -> Win-GO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Super Power Ninja Turbo Neo Ultra Hyper Mega Multi Alpha Meta Extra Uber Prefix COMBO
