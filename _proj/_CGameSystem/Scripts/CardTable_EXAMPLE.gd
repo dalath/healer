@@ -5,17 +5,17 @@ extends "res://_proj/_CGameSystem/Scripts/CardTable.gd"
 
 func EXAMPLE_CFG():
 	setup_draw_cfg = [ # How to draw cards during SETUP
-		{ "amount":1, "area":"hand_A" }, 
-		{ "amount":2, "area":"hand_B" }, 
+		{ "amount":0, "area":"Hand" }, 
+		{ "amount":0, "area":"Track" }, 
 	]
 	setup_draw_index = 0
 	#
 	phase_draw_cfg = [ # How to draw cards during the various phases of a round
 		[# 0
-			{ "amount":1, "area":"hand_A" }, 
+			{ "amount":0, "area":"Hand" }, 
 		],
 		[# 1
-			{ "amount":1, "area":"hand_B" }, 
+			{ "amount":0, "area":"Track" }, 
 		],
 	]
 	phase_draw_index = 0
@@ -52,8 +52,8 @@ func discard_area(area_):
 
 func start_round():
 	Global.out("=== New round ===", 3)
-	discard_area($Card_Areas/hand_A) 	
-	discard_area($Card_Areas/hand_B)
+	discard_area($Card_Areas/Hand) 	
+	discard_area($Card_Areas/Track)
 	#
 	return .start_round()
 	#
@@ -71,8 +71,8 @@ func next_setup_draw(args_):
 		#
 	if setup_draw_index < setup_draw_cfg.size():
 		var cfg = setup_draw_cfg[setup_draw_index]
-		drawpile.draw(cfg.amount, cfg.area)
 		setup_draw_index += 1
+		drawpile.draw(cfg.amount, cfg.area)
 		return
 		#	
 	SignalRelay.remove("draw_finished", self, "next_setup_draw")
@@ -80,7 +80,7 @@ func next_setup_draw(args_):
 	phase = 0
 	drawpile.current_target_name = drawpile.Default_Target_Area_Name
 	pass_button_activation(true)
-	$Card_Areas/hand_A.activation(true)		# EXAMPLE
+	$Card_Areas/Hand.activation(true)		# EXAMPLE
 	draw_pile_activation(true)
 	print("Setup done")
 	

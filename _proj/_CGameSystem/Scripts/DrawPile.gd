@@ -49,7 +49,10 @@ func end_round():
 func draw(amount_=1, target_area_name_=Default_Target_Area_Name):
 	current_target_name = target_area_name_
 	cards_left_to_draw = amount_
-	if amount_ == 0 or cards.size() == 0: 
+	if amount_ < 1:
+		SignalRelay.emit("draw_finished", [amount_])
+		return
+	elif cards.size() == 0: 
 		SignalRelay.emit("draw_finished", [amount_])
 		return
 	var top_card = cards[-1]
@@ -68,9 +71,12 @@ func is_available():
 
 #---------------------------- I/O -----------------------------#
 
+#::: CARD ACTIVATION :::#
 func intercept_card_func(card_):
-	if In_Card_Area.intercept_card_func(card_): return true
-	#
+	# First continue up the chain to see if Table->Area wants to intercept
+	if In_Card_Area.intercept_card_func(card_):
+		return true  # This action was intercepted
+		#
 	# Clicking a card in a DrawPile works a bit different
 	#
 	# 1) Since the point of DrawPiles is to send out cards, there needs to be a check 
@@ -82,8 +88,11 @@ func intercept_card_func(card_):
 	# 2) DrawPiles might be set to send out more than one card at a time. 
 	# Card by card, we execute its CardFunc, and then reveal the next and so on
 	for _i_ in range(Draw_Size):
-		var behavior_applied = CardFunc.Library[ cards[-1].Behaviors[In_Card_Area.name] ].call_func(cards[-1])
-		if not behavior_applied: return true
+		var cardfunc_name = cards[-1].Behaviors[In_Card_Area.name]
+		var run = CardFunc.Library[cardfunc_name].call_func(cards[-1])
+		if not run: 
+			return true
+			#
 		if not reveal_top_card():
 			if Global.Debug_Verbosity_Level > 4: print("pile empty")			
 			return true

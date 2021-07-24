@@ -1,8 +1,5 @@
 
-TITTA HÄR FÖRST: Du har precis "fixat till" _CGameSystem och skapat om Healer på nytt
-
-1) gör ett Creature card och Heal card
-2) Se till att Draw funkar, så att Heal cards går till Hand och Creature går till Track
+TITTA HÄR FÖRST: Bug: vad är det som overridear CardFuncs såsom "to_track" (de går hela tiden till Hand oavsett)
 
 
 

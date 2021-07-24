@@ -70,15 +70,19 @@ func is_available():
 
 #---------------------------- I/O -----------------------------#
 
+#::: CARD ACTIVATION :::#
 func intercept_card_func(card_):
+	# First continue up the chain to see if Table->Area wants to intercept
 	if In_Card_Area.intercept_card_func(card_):
-		return true # Give CardArea a chance to stop everything
+		return true  # This action was intercepted
 		#
-	return SlotFunc.Library[ Behaviors["intercept_card_func"] ].call_func(self)
-#
-func after_card_func(_card_):
-	pass
+	# See if this Slot is specifically configured
+	# to run its own function -- and if this function
+	# will intercept and block card actions
+	return false or SlotFunc.Library[ Behaviors["intercept_card_func"] ].call_func(self)
 
 
-func _on_Timer_timeout():
-	pass 
+
+func after_card_func(_card_): pass
+
+func _on_Timer_timeout(): pass 

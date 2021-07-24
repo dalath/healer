@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://_proj/_CGameSystem/Scenes/Card.tscn" type="PackedScene" id=1]
+[ext_resource path="res://_proj/Scripts/Cards/Card_BASE.gd" type="Script" id=2]
+
+[node name="Card_BASE" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+Behaviors = {
+"Draw": "from_draw_pile_to_target",
+"hand_A": "to_discard"
+}
+
+[node name="_fill_MID" parent="_m_mouse_catcher/_h_" index="1"]
+text = "texta"

@@ -26,6 +26,7 @@ var reshuffle_callback = { "pile":null, "function":null, "args":[] }
 #---------------------------- SETUP -----------------------------#
 
 func _ready():
+	Global.CardTable = self
 	SignalRelay.add("reset", self, "reset")
 	SignalRelay.add("game_over", self, "handle_game_over")
 	for a in $Card_Areas.get_children():

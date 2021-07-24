@@ -62,9 +62,18 @@ func activation(state_):
 
 #---------------------------- I/O -----------------------------#
 
+#::: CARD ACTIVATION :::#
 func intercept_card_func(card_):
-	if not active: return true # If not active, tell card to stop
+	# If this CardArea has been deactivated 
+	# it will block all interaction, and so 
+	# card actions will count as intercepted
+	if not active: 
+		return true 
+	# 
+	# Before Card gets released, 
+	# check if Table wants to intercept
 	return CardTable.intercept_card_func(card_)
-#
-func after_card_func(_card_):
-	pass
+
+
+
+func after_card_func(_card_): pass
