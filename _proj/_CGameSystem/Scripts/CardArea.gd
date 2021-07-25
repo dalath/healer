@@ -13,7 +13,6 @@ var slots: Array
 
 func _ready():
 	Global.CardAreas[name] = self	# Register with Global
-	activation(Start_As_Active)
 #	SignalRelay.add("reset", self, "reset")
 	#
 	slots = $slots.get_children()
