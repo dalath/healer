@@ -1,11 +1,64 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://_proj/Scenes/Cards/Card_BASE.tscn" type="PackedScene" id=1]
 [ext_resource path="res://_proj/Scripts/Cards/Card_Spell.gd" type="Script" id=2]
+[ext_resource path="res://_proj/_CGameSystem/font/Card_names.tres" type="DynamicFont" id=3]
+[ext_resource path="res://_proj/_CGameSystem/font/Card_BR_text.tres" type="DynamicFont" id=4]
 
 [node name="Card_Spell" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 Behaviors = {
 "Draw": "to_hand",
-"Hand": "\"\""
+"Hand": "toggle_select"
 }
+
+[node name="content" parent="." index="2"]
+custom_constants/margin_top = 2
+
+[node name="TL" parent="content" index="0"]
+margin_top = 2.0
+
+[node name="Name" type="Label" parent="content/TL" index="0"]
+margin_right = 65.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.294118, 0.188235, 0.054902, 1 )
+text = "Spell"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TR" parent="content" index="1"]
+margin_top = 2.0
+
+[node name="BL" parent="content" index="2"]
+margin_top = 2.0
+
+[node name="BR" parent="content" index="3"]
+margin_top = 2.0
+
+[node name="Power" type="Label" parent="content/BR" index="0"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -49.0
+margin_top = -30.0
+margin_right = -3.0
+margin_bottom = 2.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.294118, 0.188235, 0.054902, 1 )
+text = "1"
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="_m_mouse_catcher" parent="." index="4"]
+margin_top = -60.25
+margin_bottom = 59.75
+rect_clip_content = true
+size_flags_horizontal = 4
+size_flags_vertical = 4

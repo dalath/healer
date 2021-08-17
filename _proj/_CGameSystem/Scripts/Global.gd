@@ -2,7 +2,7 @@ extends Node
 
 
 var CardAreas: Dictionary
-var Debug_Verbosity_Level = 6
+var Debug_Verbosity_Level = 12
 
 var CardTable
 

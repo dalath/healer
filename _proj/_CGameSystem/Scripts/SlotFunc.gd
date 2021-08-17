@@ -12,8 +12,10 @@ func _ready():
 	#
 	Library[""] = funcref(self, "dummy")
 	Library["test"] = funcref(self, "test_func")
-	Library["player_discard"] = funcref(self, "player_discard")
+#	Library["player_discard"] = funcref(self, "player_discard")
 	Library["toggle_select"] = funcref(self, "toggle_select")
+	Library["discard_selected_cards"] = funcref(self, "discard_selected")
+	Library["drawpile_click"] = funcref(self, "discard_selected")	
 	
 
 
@@ -33,6 +35,11 @@ func toggle_select(slot_):
 	return true
 	
 	
-func player_discard(_slot_):
-	Global.CardTable.player_discarded()
-	return false
+func discard_selected(_slot_):
+	Global.CardTable.discard_selected(_slot_)
+	return true
+
+	
+#func player_discard(_slot_):
+#	Global.CardTable.player_discarded()
+#	return false

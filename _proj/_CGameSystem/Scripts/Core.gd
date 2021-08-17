@@ -10,9 +10,7 @@ func _ready():
 	SignalRelay.add("game_over", self, "handle_game_over")
 
 func reset_table():
-	get_tree().call_group("CardSlots", "reset")
-	get_tree().call_group("Piles", "reset")
-	get_tree().call_group("CardAreas", "reset")
+	$game_over.visible = false
 	$CardTable.reset()
 
 func reset_buttons():
@@ -23,6 +21,7 @@ func reset_buttons():
 #---------------------------- CORE -----------------------------#	
 	
 func handle_game_over(_args_):
+	$game_over.visible = true
 	reset_buttons()
 
 
@@ -35,7 +34,6 @@ func _on_reset_Button_pressed():
 	
 	
 func _on_start_Button_pressed():
-	if $CardTable.start_round():
-		$start_Button.disabled = true
+	$CardTable.new_round()
 
 

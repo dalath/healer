@@ -1,70 +1,97 @@
 extends Node2D
 
-
-# What functions to run in SlotFunc.gd during various events -- <event> <func name>
-export (Dictionary) var Behaviors = { 
-	"start_of_round": String(), 
-	"end_of_round": String(), 
-	"intercept_card_func": String(),  
-}
+# ::: CardSlot ::: 
+#
+# Can store a card. 
+# Also has the ability to intercept a card's activation.
 
 
-export (bool) var Reveal_On_Arrival		# If TRUE then hide cover
+
+export (String) var Intercept_Function	# SlotFunc to run if a Card reports activation
+export (bool) var Reveal_On_Arrival		# If TRUE then hide cover when moving
 export (bool) var Start_of_Round_Clear
 
+var Card
 var In_Card_Area
-var Lock = false
-var card
+var locked = false
 
 
 
 #---------------------------- SETUP -----------------------------#
 
-func _ready(): pass
-#	
+func _ready(): 
+	SignalRelay.add("start", self, "start")
+	SignalRelay.add("end", self, "end")
+
+
 func reset():
-	remove_card(card)
-	Lock = false
+	remove_card(self.Card)
+	$select.visible = false
+	self.locked = false
 
 
-func start_round():
-	SlotFunc.Library[ Behaviors["start_of_round"] ].call_func(self)
-	if Start_of_Round_Clear:
-		remove_card(card)
-#
-func end_round():
-	SlotFunc.Library[ Behaviors["end_of_round"] ].call_func(self)
+func end():
+	pass	
 
 
-
-#---------------------------- CORE -----------------------------#	
+func toggle_select():
+	change_select(!$select.visible)
 	
+func change_select(state_):
+	$select.visible = state_
+	In_Card_Area.CardTable.slot_toggled(self)
+	
+
+#---------------------------------------------------------------#	
+
+
+
+func is_available():
+	return Card == null
+
+
+
+#:: INCOMING CARD ::#
 func put_card(card_):
-	if card != null: return false	# Error: Slot not available
-	card_.In_Card_Slot = self
+	#
+	# Check if there is already a card here
+	if Card != null: 
+		return false
+		#
+	# Register as the Card in this slot	
+	Card = card_
+	add_child(Card)
+	Card.In_Card_Slot = self
+	# Uncover if card should be face-up
 	if Reveal_On_Arrival: 
-		card_.cover.visible = false
-	add_child(card_)
-	card = card_
-	if not In_Card_Area.name in card.Behaviors:
-		card.Behaviors[In_Card_Area.name] = ""
+		Card.cover.visible = false
+		#
+	# If card has no prepared reaction to our CardArea, assign a <dummy>
+	if not In_Card_Area.name in Card.Behaviors:
+		Card.Behaviors[In_Card_Area.name] = ""
+		#
 	return true
 #
+#
+#:: OUTGOING CARD ::#
 func remove_card(card_=null):
+	#
+	# Make sure there is any card to remove
 	if card_ == null:
-		if card == null: 
-			return false 
+		if Card == null: 
+			return null # NO CARD TO REMOVE
 		else:
-			card_ = card
+			card_ = Card
 			#
 	card_.In_Card_Slot = null
 	remove_child(card_)
-	card = null
-	return true
-
-	
-func is_available():
-	return card == null
+	Card = null
+	$select.visible = false
+	In_Card_Area.CardTable.slot_toggled(self) # Since $select is hidden, toggle will result in deselection
+	return card_
+#
+func discard():
+	Card.to_discard()
 
 
 
@@ -79,10 +106,17 @@ func intercept_card_func(card_):
 	# See if this Slot is specifically configured
 	# to run its own function -- and if this function
 	# will intercept and block card actions
-	return false or SlotFunc.Library[ Behaviors["intercept_card_func"] ].call_func(self)
+	return false or SlotFunc.Library[Intercept_Function].call_func(self)
+
+
+# SLOT ACTIVATION #
+func _on_mouse_catcher_gui_input(event_):
+	pass
 
 
 
-func after_card_func(_card_): pass
-
-func _on_Timer_timeout(): pass 
+# TRASHCAN #
+#__________#
+# What functions to run in SlotFunc.gd during various events -- <event> <func name>
+# export (Dictionary) var Behaviors = { "start_of_round":"", "end_of_round":"", "intercept_card_func":"" }
+#

@@ -1,0 +1,85 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://_proj/Scenes/Cards/Card_Spell.tscn" type="PackedScene" id=1]
+[ext_resource path="res://_proj/Sprites/card_spell_heal.png" type="Texture" id=3]
+
+[node name="Card_Spell_Heal" groups=[
+"Cards",
+] instance=ExtResource( 1 )]
+Behaviors = {
+"Draw": "to_hand",
+"Hand": "toggle_select"
+}
+Spell = "heal"
+Power = 2
+
+[node name="bg" parent="." index="0"]
+visible = false
+
+[node name="fg" parent="." index="1"]
+position = Vector2( 0, 0 )
+texture = ExtResource( 3 )
+
+[node name="content" parent="." index="2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -45.0
+margin_top = -60.0
+margin_right = 45.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 90, 120 )
+rect_clip_content = true
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/margin_right = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="TL" parent="content" index="0"]
+margin_left = 5.0
+margin_right = 85.0
+margin_bottom = 115.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Name" parent="content/TL" index="0"]
+text = "Heal"
+
+[node name="TR" parent="content" index="1"]
+margin_left = 5.0
+margin_right = 85.0
+margin_bottom = 115.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BL" parent="content" index="2"]
+margin_left = 5.0
+margin_right = 85.0
+margin_bottom = 115.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BR" parent="content" index="3"]
+margin_left = 5.0
+margin_right = 85.0
+margin_bottom = 115.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Power" parent="content/BR" index="0"]
+text = "2"
+
+[node name="_m_mouse_catcher" parent="." index="4"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -44.5
+margin_top = -60.2649
+margin_right = 45.5
+margin_bottom = 59.7351
+rect_min_size = Vector2( 90, 120 )
+
+[connection signal="gui_input" from="_m_mouse_catcher" to="." method="_on_mouse_catcher_gui_input"]

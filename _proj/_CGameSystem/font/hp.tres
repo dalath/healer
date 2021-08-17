@@ -1,0 +1,10 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://_proj/_CGameSystem/font/arialbd.ttf"
+
+[resource]
+use_filter = true
+extra_spacing_bottom = -4
+extra_spacing_char = 1
+font_data = SubResource( 1 )

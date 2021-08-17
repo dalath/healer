@@ -20,6 +20,7 @@ Global="*res://_proj/_CGameSystem/Scripts/Global.gd"
 SignalRelay="*res://_proj/_CGameSystem/Scripts/Signal_relay.gd"
 SlotFunc="*res://_proj/_CGameSystem/Scripts/SlotFunc.gd"
 CardFunc="*res://_proj/_CGameSystem/Scripts/CardFunc.gd"
+SpellBook="*res://_proj/Scripts/SpellBook.gd"
 
 [physics]
 

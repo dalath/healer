@@ -21,5 +21,7 @@ func _ready():
 func dummy(card_):
 	print("dummy spell")
 
-func heal(card_):
+func heal(source_, target_):
 	print("heal spell")
+	return target_.incoming_heal(source_.Power)
+

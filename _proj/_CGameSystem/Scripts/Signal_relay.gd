@@ -5,7 +5,7 @@ extends Node
 signal start
 signal reset
 signal pause
-signal draw_finished
+signal draw_ended
 signal game_over
 
 

@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://_proj/_CGameSystem/font/arial.tres" type="DynamicFont" id=1]
 [ext_resource path="res://_proj/_CGameSystem/Sprites/_placeholders/gray.png" type="Texture" id=2]
 [ext_resource path="res://_proj/_CGameSystem/Sprites/_placeholders/offwhite.png" type="Texture" id=3]
 [ext_resource path="res://_proj/_CGameSystem/Scripts/Card.gd" type="Script" id=4]
@@ -18,7 +17,7 @@ texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 90, 120 )
 
-[node name="_m_mouse_catcher" type="MarginContainer" parent="."]
+[node name="content" type="MarginContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -39,144 +38,56 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="_h_" type="HBoxContainer" parent="_m_mouse_catcher"]
+[node name="TL" type="Control" parent="content"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 85.0
 margin_bottom = 115.0
-rect_min_size = Vector2( 80, 110 )
-mouse_filter = 2
-custom_constants/separation = 2
-
-[node name="_v_LEFT" type="VBoxContainer" parent="_m_mouse_catcher/_h_"]
-margin_right = 18.0
-margin_bottom = 110.0
-
-[node name="value_TL" type="Label" parent="_m_mouse_catcher/_h_/_v_LEFT"]
-margin_right = 18.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 18, 0 )
-size_flags_horizontal = 0
-size_flags_vertical = 1
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-align = 1
-
-[node name="type_TL" type="Label" parent="_m_mouse_catcher/_h_/_v_LEFT"]
-margin_top = 18.0
-margin_right = 18.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 18, 0 )
-size_flags_horizontal = 0
-size_flags_vertical = 1
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 1, 0, 0, 1 )
-align = 1
-valign = 2
-
-[node name="_fill_" type="Control" parent="_m_mouse_catcher/_h_/_v_LEFT"]
-margin_top = 36.0
-margin_right = 18.0
-margin_bottom = 74.0
-size_flags_vertical = 3
-
-[node name="type_BL" type="Label" parent="_m_mouse_catcher/_h_/_v_LEFT"]
-margin_top = 78.0
-margin_right = 18.0
-margin_bottom = 92.0
-rect_min_size = Vector2( 18, 0 )
-size_flags_horizontal = 0
-size_flags_vertical = 1
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 1, 0, 0, 1 )
-align = 1
-valign = 2
-
-[node name="value_BL" type="Label" parent="_m_mouse_catcher/_h_/_v_LEFT"]
-margin_top = 96.0
-margin_right = 18.0
-margin_bottom = 110.0
-rect_min_size = Vector2( 18, 0 )
-size_flags_horizontal = 0
-size_flags_vertical = 1
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-align = 1
-
-[node name="_fill_MID" type="Label" parent="_m_mouse_catcher/_h_"]
-margin_left = 20.0
-margin_right = 60.0
-margin_bottom = 110.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "text"
-align = 1
-valign = 1
 
-[node name="_v_RIGHT" type="VBoxContainer" parent="_m_mouse_catcher/_h_"]
-margin_left = 62.0
-margin_right = 80.0
-margin_bottom = 110.0
-
-[node name="value_TR" type="Label" parent="_m_mouse_catcher/_h_/_v_RIGHT"]
-margin_right = 18.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 18, 0 )
-size_flags_horizontal = 0
-size_flags_vertical = 1
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-align = 1
-valign = 2
-
-[node name="type_TR" type="Label" parent="_m_mouse_catcher/_h_/_v_RIGHT"]
-margin_top = 18.0
-margin_right = 18.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 18, 0 )
-size_flags_horizontal = 0
-size_flags_vertical = 1
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 1, 0, 0, 1 )
-align = 1
-valign = 2
-
-[node name="_fill_" type="Control" parent="_m_mouse_catcher/_h_/_v_RIGHT"]
-margin_top = 36.0
-margin_right = 18.0
-margin_bottom = 74.0
+[node name="TR" type="Control" parent="content"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 115.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="type_BR" type="Label" parent="_m_mouse_catcher/_h_/_v_RIGHT"]
-margin_top = 78.0
-margin_right = 18.0
-margin_bottom = 92.0
-rect_min_size = Vector2( 18, 0 )
-size_flags_horizontal = 0
-size_flags_vertical = 1
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 1, 0, 0, 1 )
-align = 1
-valign = 2
+[node name="BL" type="Control" parent="content"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 115.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="value_BR" type="Label" parent="_m_mouse_catcher/_h_/_v_RIGHT"]
-margin_top = 96.0
-margin_right = 18.0
-margin_bottom = 110.0
-rect_min_size = Vector2( 18, 0 )
-size_flags_horizontal = 0
-size_flags_vertical = 1
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-align = 1
-valign = 2
+[node name="BR" type="Control" parent="content"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 115.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Cover" type="Sprite" parent="."]
 visible = false
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 90, 120 )
+
+[node name="_m_mouse_catcher" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -45.0
+margin_top = -60.0
+margin_right = 45.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 90, 120 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="gui_input" from="_m_mouse_catcher" to="." method="_on_mouse_catcher_gui_input"]

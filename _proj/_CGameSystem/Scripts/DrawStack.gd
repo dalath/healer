@@ -49,7 +49,7 @@ func end_round():
 func deal(amount_=1, target_area_name_=Default_Target_Area_Name):
 	current_target_name = target_area_name_
 	if amount_ == 0 or cards.size() == 0: 
-		SignalRelay.emit("draw_finished", [amount_])
+		SignalRelay.emit("draw_ended", [amount_])
 		return
 	cards_left_to_deal = amount_
 	var top_card = cards[-1]

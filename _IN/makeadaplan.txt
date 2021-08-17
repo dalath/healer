@@ -1,7 +1,20 @@
 
-TITTA HÄR FÖRST: Bug: vad är det som overridear CardFuncs såsom "to_track" (de går hela tiden till Hand oavsett)
+TITTA HÄR FÖRST:  check när Creature når slutet
+
+cast spell ska kosta 2? nåt behövs för nu är det ingen poäng med att göra annat än casta (det kommer nya kort hela tiden ändå)
 
 
+
+-
+
+ROUND 0
+- turn A - 
+
+ROUND 1
+- turn A -
+
+ROUND 2
+- ...
 
 
 
